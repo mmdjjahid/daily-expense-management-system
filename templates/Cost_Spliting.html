@@ -1,0 +1,108 @@
+{% include "header.html" %} {% include "nav.html" %}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Cost Spliting</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">Cost Spliting</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <!-- /.card -->
+                   
+
+                    <div class="card">
+                        <div class="card-header">
+                            <form action="{{ url_for('Cost_Spliting') }}" method="POST">
+                                <div class="row">
+                                    
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label for="name">YearMonth:</label>
+                                <select class="form-control" name="YearMonth" id="profile">
+                                    <option></option>
+                                    {% for item in YearMonth %}
+                                    <option>{{ item[0] }}</option>
+                                    {% endfor %}
+                                </select>
+                                
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <button class="fas fa-edit" type="submit">ADD</button>
+                                
+                              </form>
+                            <div class="total-amount"> 
+                                <p><b>{{YearMonth2}}</b> Total Cost <b>{{ total_expense_amount }}</b> per person {{ total_expense_amount }}/{{ total_users }}=<b>{{ total_expense_amount / total_users }}</b></p>
+                                
+                            </div> 
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <table id="example1" class="table table-bordered table-striped table-head-fixed table-hover">
+                                <div class="row"></div>
+
+                                <thead>
+                                    <tr>
+                                        
+                                        <th>Name</th>
+                                        <th>Total Amount</th>
+                                        <th>Paid Amount</th>
+                                        <th>Due Amount</th>
+                                        
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for i in results %}
+                                    <tr>
+                                        <td>{{i.0}}</td>
+                                        <td>{{i.1}}</td>
+                                        <td>{{i.2}}</td>
+                                        <td>{{i.3}}</td>
+                                    </tr>
+                                    {% endfor %}
+                                    
+                                   
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Total Amount</th>
+                                        <th>Paid Amount</th>
+                                        <th>Due Amount</th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+</div>
+
+<!-- /.content-wrapper -->
+{% include "footer.html" %}

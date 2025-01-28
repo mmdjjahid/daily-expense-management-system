@@ -1,0 +1,145 @@
+{% include "header.html" %} {% include "nav.html" %}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Search</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">Search</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <!-- /.card -->
+
+                    <div class="card">
+                        <div class="card-header">
+
+
+
+                            
+                            <div id="accordion">
+                                <div class="card card-primary">
+                                  <div class="card-header">
+                                    <h4 class="card-title w-100">
+                                      <a class="d-block w-100" data-toggle="collapse" href="#collapseOne">
+                                        Search
+                                      </a>
+                                    </h4>
+                                  </div>
+                                  <div id="collapseOne" class="collapse show" data-parent="#accordion">
+                                    <div class="card-body">
+                                        <form action="{{ url_for('search') }}" method="POST">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div class="form-group">
+                                                        
+                                                            <label>From Date :</label>
+                                          
+                                                            <div class="input-group">
+                                                              <div class="input-group-prepend">
+                                                                <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                                                              </div>
+                                                              <input name="fromDate" type="text" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask="" im-insert="false">
+                                                            </div>
+                                                            <!-- /.input group -->
+                                                          
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="form-group">
+                                                        
+                                                            <label>To Date :</label>
+                                          
+                                                            <div class="input-group">
+                                                              <div class="input-group-prepend">
+                                                                <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                                                              </div>
+                                                              <input name="toDate" type="text" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask="" im-insert="false">
+                                                            </div>
+                                                            <!-- /.input group -->
+                                                          
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="form-group">
+                                                        <label for="name">Name:</label>
+            
+                                                        <select class="form-control" name="name" id="profile">
+                                                            <option></option>
+                                                            {% for item in user %}
+                                                            <option>{{ item[1] }}</option>
+                                                            {% endfor %}
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="form-group">
+                                                        <label for="name">Item Name:</label>
+            
+                                                        <select class="form-control" name="itemname" id="profile">
+                                                            <option></option>
+                                                            {% for items in item %}
+                                                            <option>{{ items[1] }}</option>
+                                                            {% endfor %}
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            
+                                                    
+                                                            
+            
+                                            <div class="col-2">
+                                                <div class="form-group">
+                                                    
+                                                    <button class="btn btn-primary" type="submit">Search</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                        
+                                      
+                                    </div>
+                                  </div>
+                                </div>
+                                
+                              </div>
+
+
+                            
+
+
+                            
+                        </div>
+                        <!-- /.card-header -->
+                        
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+</div>
+
+<!-- /.content-wrapper -->
+{% include "footer.html" %}

@@ -1,0 +1,118 @@
+{% include "header.html" %} {% include "nav.html" %}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Show Expense</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">Show Expense</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <!-- /.card -->
+                    <form action="{{ url_for('add_expense') }}" method="POST">
+                        <input type="text" name="amount" placeholder="amount" >
+                        
+
+                        <select name="item">
+                        {% for i in item %}
+                        <option value="{{i.0}}" >{{i.1}}</option>
+                        {% endfor %}
+                        </select>
+
+
+
+                        <button class="fas fa-edit" type="submit">ADD</button>
+                      </form>
+                    <div class="card">
+                        <div class="card-header">
+                            
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <table id="example1" class="table table-bordered table-striped table-head-fixed table-hover">
+                                <div class="row"></div>
+
+                                <thead>
+                                    <tr>
+                                        
+                                        <th>Name</th>
+                                        <th>Item Name</th>
+                                        <th>Amount</th>
+                                        <th>Date</th>
+                                        {% if user2.4=="admin" %}
+                                        <th>Action</th>
+                                        {% endif %}
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for i in user %}
+                                    <!-- table rows -->
+                                    <tr>
+                                        <td>{{i.1}}</td>
+                                        <td>{{i.2}}</td>
+                                        <td>{{i.3}}</td>
+                                        <td>{{i.4}}</td>
+                                        {% if user2.4=="admin" %}
+                                        <td>
+                                            <form action="{{ url_for('edits_expences') }}" method="POST" style="display: inline-block; margin-right: 10px;">
+                                                <input type="hidden" name="id" value="{{i.0}}">
+                                                <input type="hidden" name="name" value="{{i.3}}">
+                                                <!-- <input type="hidden" name="amount" value="{{i.3}}"> -->
+                                                
+                                                <button class="fas fa-edit" type="submit"></button>
+                                                
+                                              </form>
+                                              <form action="{{ url_for('delete_expense') }}" method="POST" style="display: inline-block;">
+                                                <input type="hidden" name="id" value="{{i.0}}">
+                                                <button class="fas fa-trash-alt " type="submit"></button>
+                                                
+                                              </form>
+                                          </td>
+                                          {% endif %}
+                                    </tr>
+                                    
+                                     {% endfor %}
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Amount</th>
+                                        <th>Date</th>
+                                        {% if user2.4=="admin" %}
+                                        <th>Action</th>
+                                        {% endif %}
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+</div>
+
+<!-- /.content-wrapper -->
+{% include "footer.html" %}

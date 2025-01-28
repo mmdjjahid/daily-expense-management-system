@@ -1,0 +1,97 @@
+{% include "header.html" %} {% include "nav.html" %}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Show Expences Item</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">Show Expences Item</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <!-- /.card -->
+                    <form action="{{ url_for('add_expences_item') }}" method="POST">
+                        <input type="text" name="name" >
+                        
+                        <button class="fas fa-edit" type="submit">ADD</button>
+                      </form>
+                    <div class="card">
+                        <div class="card-header">
+                            
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <table id="example1" class="table table-bordered table-striped table-head-fixed table-hover">
+                                <div class="row"></div>
+
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Action</th>
+                                        
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for i in user %}
+                                    <!-- table rows -->
+                                    <tr>
+                                        <td>{{i.1}}</td>
+                                        <td>
+                                            
+                                            <form action="{{ url_for('edits_expences_item') }}" method="POST" style="display: inline-block; margin-right: 10px;">
+                                                <input type="hidden" name="id" value="{{i.0}}">
+                                                <input type="hidden" name="name" value="{{i.1}}">
+                                                
+                                                <button class="fas fa-edit" type="submit"></button>
+                                                
+                                              </form>
+                                              <form action="{{ url_for('delete_expences_item') }}" method="POST" style="display: inline-block;">
+                                                <input type="hidden" name="id" value="{{i.0}}">
+                                                <button class="fas fa-trash-alt" type="submit"></button>
+                                                
+                                              </form>
+                                          </td>
+                                        
+                                    </tr>
+                                    
+                                     {% endfor %}
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th>User Name</th>
+                                        
+                                        <th>Action</th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+</div>
+
+<!-- /.content-wrapper -->
+{% include "footer.html" %}
